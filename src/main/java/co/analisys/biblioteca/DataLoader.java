@@ -1,7 +1,7 @@
 package co.analisys.biblioteca;
 
-import co.analisys.biblioteca.model.*;
-import co.analisys.biblioteca.repository.PrestamoRepository;
+import co.analisys.biblioteca.model.Miembro;
+import co.analisys.biblioteca.repository.MiembroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,41 +14,19 @@ import java.util.UUID;
 public class DataLoader implements CommandLineRunner {
 
     @Autowired
-    private PrestamoRepository prestamoRepository;
+    private MiembroRepository miembroRepository;
 
-    @Override
     public void run(String... args) throws Exception {
-        // Crear algunos préstamos de ejemplo
-        Prestamo prestamo1 = new Prestamo(
-                new PrestamoId(UUID.randomUUID().toString()),
-                new UsuarioId("U001"),
-                new LibroId("L001"),
-                new FechaPrestamo(LocalDate.now().minusDays(5)),
-                new FechaDevolucionPrevista(LocalDate.now().plusDays(9)),
-                EstadoPrestamo.ACTIVO
-        );
+        Miembro miembro1 = new Miembro();
+        miembro1.setNombre("Juan Pérez");
+        miembro1.setEmail("juan@email.com");
+        miembro1.setFechaInscripcion(LocalDate.now());
+        miembroRepository.save(miembro1);
 
-        Prestamo prestamo2 = new Prestamo(
-                new PrestamoId(UUID.randomUUID().toString()),
-                new UsuarioId("U002"),
-                new LibroId("L002"),
-                new FechaPrestamo(LocalDate.now().minusDays(10)),
-                new FechaDevolucionPrevista(LocalDate.now().plusDays(4)),
-                EstadoPrestamo.ACTIVO
-        );
-
-        Prestamo prestamo3 = new Prestamo(
-                new PrestamoId(UUID.randomUUID().toString()),
-                new UsuarioId("U003"),
-                new LibroId("L003"),
-                new FechaPrestamo(LocalDate.now().minusDays(15)),
-                new FechaDevolucionPrevista(LocalDate.now().minusDays(1)),
-                EstadoPrestamo.VENCIDO
-        );
-
-        // Guardar los préstamos en la base de datos
-        prestamoRepository.saveAll(Arrays.asList(prestamo1, prestamo2, prestamo3));
-
-        System.out.println("Datos de préstamos de ejemplo cargados exitosamente.");
+        Miembro miembro2 = new Miembro();
+        miembro2.setNombre("María López");
+        miembro2.setEmail("maria@email.com");
+        miembro2.setFechaInscripcion(LocalDate.now().minusDays(30));
+        miembroRepository.save(miembro2);
     }
 }
