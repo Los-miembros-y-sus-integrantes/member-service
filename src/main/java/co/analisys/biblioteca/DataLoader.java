@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Component
 public class DataLoader implements CommandLineRunner {
