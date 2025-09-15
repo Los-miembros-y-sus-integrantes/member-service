@@ -8,4 +8,5 @@ public interface MiembroService {
 
     public Miembro registrarMiembro(Miembro miembro);
     public List<Miembro> obtenerTodosMiembros();
+    public Miembro obtenerMiembroPorId(Long id);
 }

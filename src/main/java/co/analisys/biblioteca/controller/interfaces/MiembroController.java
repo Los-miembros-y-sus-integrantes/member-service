@@ -28,4 +28,13 @@ public interface MiembroController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "No se encontraron miembros")
     })
     public List<Miembro> listarMiembros();
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Obtener un miembro por su ID")
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "Miembro encontrado"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "Miembro no encontrado")
+    })
+    public Miembro obtenerMiembroPorId(@PathVariable Long id);
+
 }

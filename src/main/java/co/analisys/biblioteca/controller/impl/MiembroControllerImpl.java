@@ -24,4 +24,11 @@ public class MiembroControllerImpl implements MiembroController {
     public List<Miembro> listarMiembros() {
         return miembroService.obtenerTodosMiembros();
     }
+
+    @Override
+    public Miembro obtenerMiembroPorId(Long id) {
+        return miembroService.obtenerMiembroPorId(id);
+    }
+
+
 }

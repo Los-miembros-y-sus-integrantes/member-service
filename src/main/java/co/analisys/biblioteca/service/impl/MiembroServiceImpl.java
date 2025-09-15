@@ -23,4 +23,9 @@ public class MiembroServiceImpl implements MiembroService {
     public List<Miembro> obtenerTodosMiembros() {
         return miembroRepository.findAll();
     }
+
+    @Override
+    public Miembro obtenerMiembroPorId(Long id) {
+        return miembroRepository.findById(id).orElse(null);
+    }
 }
