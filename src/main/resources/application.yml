@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: biblioteca
+  datasource:
+    url: jdbc:h2:mem:circulaciondb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/gimnasio
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+server:
+  port: 8083
+
+keycloak:
+  credentials:
+    secret: SZab15ABnTGYbROcjVeotVF6ZPP0cuiU
+  auth-server-url: http://localhost:8080/auth
+  realm: gimnasio
+  resource: member-service
+  public-client: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE:localhost:8761/eureka/%7D}
+  instance:
+      hostname: ${EUREKA_INSTANCE:favourite-service}
+
+ribbon:
+  eureka:
+    enabled: true
+  NIWSServerListClassName: com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList
